@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -12,7 +13,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-         return Inertia::render('Frontend/Category/CategoryIndex');
+        $categories = Category::get();
+        return Inertia::render('Frontend/Category/CategoryIndex', [
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -28,7 +32,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        Category::create([
+            'category_name' => $request->name,
+        ]);
+
+        return redirect()->to('/categories')->with('message','Category Created Successfully!');
     }
 
     /**

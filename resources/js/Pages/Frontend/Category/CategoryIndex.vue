@@ -17,18 +17,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="py-2 px-4 border">1</td>
-                        <td class="py-2 px-4 border">Laptops</td>
+                    <tr
+                        v-for="(item, index) in categories"
+                        :key="index"
+                    >
+                        <td class="py-2 px-4 border">{{ item.id }}</td>
+                        <td class="py-2 px-4 border">{{ item.category_name }}</td>
                         <td class="py-2 px-4 border">
                             <Link
-                                :href="route('categories.create')"
+                                :href="route('categories.show', item.id)"
                                  class="px-2 py-1 text-sm bg-blue-300 text-dark me-2 rounded inline-block"
                             >
                                 Show
                             </Link>
                             <Link
-                                :href="route('categories.create')"
+                                :href="route('categories.edit', item.id)"
                                  class="px-2 py-1 text-sm bg-green-500 text-white me-2 rounded inline-block"
                             >
                                 Edit
