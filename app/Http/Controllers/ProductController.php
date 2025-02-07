@@ -45,7 +45,7 @@ class ProductController extends Controller
 
         Product::create($request->all());
 
-        return redirect()->to('/products')->with('message','Product created successfully');
+        return redirect()->to('/products')->with('message','Product Created Successfully!');
     }
 
     /**
@@ -72,9 +72,18 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'price' => 'required|numeric',
+            'description' => 'required|string'
+        ]);
+
+        $product->update($request->all());
+
+        return redirect()->to('/products')->with('message','Product Updated Successfully!');
     }
 
     /**
