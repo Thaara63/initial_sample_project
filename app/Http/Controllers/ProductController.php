@@ -40,7 +40,7 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'price' => 'required|numeric',
-            'description' => 'nullable|string'
+            'description' => 'required|string'
         ]);
 
         Product::create($request->all());
@@ -59,9 +59,14 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        return Inertia::render('Frontend/Product/Edit', [
+            'product' => $product,
+            'categories' => $categories
+        ]);
+
     }
 
     /**
