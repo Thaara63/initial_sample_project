@@ -9,7 +9,7 @@
                     <Link class="text-dark" :href="route('categories.index')">Category</Link>
                 </li>
                 <li class="nav-item">
-                    <Link class="text-dark" :href="route('categories.index')">Products</Link>
+                    <Link class="text-dark" :href="route('products.index')">Products</Link>
                 </li>
             </ul>
         </div>
