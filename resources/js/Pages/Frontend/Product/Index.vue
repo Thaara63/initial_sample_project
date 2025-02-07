@@ -24,7 +24,7 @@
                         <td class="py-2 px-4 border">{{ item.id }}</td>
                         <td class="py-2 px-4 border">{{ item.name }}</td>
                         <td class="py-2 px-4 border">{{ item.price }}</td>
-                        <td class="py-2 px-4 border">{{ item.category_id }}</td>
+                        <td class="py-2 px-4 border">{{ item.category ? item.category.category_name : 'No Category' }}</td>
                         <td class="py-2 px-4 border">
                             <Link
                                 :href="route('products.show', item.id )"
