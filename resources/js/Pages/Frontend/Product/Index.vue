@@ -41,6 +41,7 @@
                             <button
                                 type="submit"
                                  class="px-2 py-1 text-sm bg-red-600 text-white me-2 rounded inline-block"
+                                 @click="deleteProduct(item.id)"
                             >
                                 Delete
                             </button>
@@ -62,5 +63,12 @@ defineProps({
     products: Array,
 });
 
+const form = useForm({});
+
+const deleteProduct = (productId) => {
+    if(confirm('Are you sure you want to delete this data?')){
+        form.delete(route('products.destroy', productId));
+    }
+};
 
 </script>
