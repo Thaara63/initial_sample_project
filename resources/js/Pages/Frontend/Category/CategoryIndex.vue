@@ -39,6 +39,7 @@
                             <button
                                 type="submit"
                                  class="px-2 py-1 text-sm bg-red-600 text-white me-2 rounded inline-block"
+                                 @click="deleteCategory(item.id)"
                             >
                                 Delete
                             </button>
@@ -60,6 +61,14 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
 defineProps({
     categories: Array,
 });
+
+const form = useForm({});
+
+const deleteCategory = (categoryId) => {
+    if(confirm('Are you sure you want to delete this category?')){
+        form.delete(route('categories.destroy', categoryId));
+    }
+};
 
 
 </script>
